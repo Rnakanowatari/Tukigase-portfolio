@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <title>Booth販売作品 | Booth販売作品</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    /* ここに共通のヘッダーCSSをそのまま貼ってもOK */
+    /* 必要なら style.css に分けてもいいです */
+
+    :root { --bg:#0f1724;--accent:#06b6d4;--muted:#94a3b8 }
+    body { margin:0; font-family:system-ui,sans-serif; color:#e6eef6; background:#081226; }
+    header { display:flex; justify-content:space-between; align-items:center; padding:0.75rem 1rem; background:rgba(255,255,255,0.05); }
+    .nav-button { color:inherit; text-decoration:none; padding:0.5rem 0.8rem; border-radius:8px; }
+    .nav-button:hover { background:rgba(255,255,255,0.1); }
+    main { padding:2rem; max-width:960px; margin:auto; }
+
+    /* YouTubeカード用のスタイル */
+    .gallery { display:grid; gap:2rem; grid-template-columns: 1fr; }
+    .video-card { background:#fff; color:#000; border-radius:10px; overflow:hidden; }
+    .video-wrapper { position:relative; padding-top:56.25%; background:#000; }
+    iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
+    .content { padding:1rem; }
+    .title { font-weight:bold; margin-bottom:0.3rem; }
+    .note { color:#555; font-size:0.9rem; }
+<style>
+    /* シンプルでモダンなヘッダー + ナビボタン */
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#06b6d4;--muted:#94a3b8}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;color:#e6eef6;background:linear-gradient(180deg,#071024 0%, #081226 100%);}
+
+    header{display:flex;align-items:center;justify-content:space-between;padding:0.75rem 1rem;background:rgba(255,255,255,0.03);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.03)}
+    .brand{display:flex;align-items:center;gap:0.6rem}
+    .logo{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:inline-grid;place-items:center;color:#04263a;font-weight:700}
+    nav{display:flex;gap:0.5rem;align-items:center}
+
+    /* ナブリンクをボタン風に見せる */
+    .nav-button{appearance:none;border:0;padding:0.5rem 0.9rem;border-radius:10px;background:transparent;color:inherit;text-decoration:none;font-weight:600;cursor:pointer;transition:all .18s;display:inline-flex;align-items:center;gap:0.5rem}
+    .nav-button:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(6,182,212,0.06)}
+    .nav-button.primary{background:linear-gradient(90deg,var(--accent),#7c3aed);color:#032027}
+
+    /* モバイル用: ハンバーガー */
+    .menu-toggle{display:none;border:0;background:none;color:inherit;font-size:1.2rem}
+    @media (max-width:700px){
+      nav{position:fixed;right:0;top:64px;background:var(--card);padding:0.75rem;border-radius:12px;box-shadow:0 12px 30px rgba(2,6,23,0.6);flex-direction:column;gap:0.4rem;transform:translateY(-10px);display:none}
+      nav.open{display:flex}
+      .menu-toggle{display:inline-flex}
+    }
+
+    main{padding:2rem;max-width:980px;margin:1.5rem auto;background:rgba(255,255,255,0.02);border-radius:12px}
+    h1{margin-top:0}
+    .card{padding:1rem;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);border:1px solid rgba(255,255,255,0.02)}
+
+    footer{max-width:980px;margin:1rem auto;color:var(--muted);font-size:0.9rem;padding:0 1rem}
+
+    /* アクセシビリティ: focus */
+    .nav-button:focus{outline:3px solid rgba(6,182,212,0.18);outline-offset:3px}
+    
+        /* 商品カード */
+   /* 商品カードを縦1列にする */
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem; /* カード間の余白 */
+  }
+
+  .product-card {
+    display: block;
+    background: #fff;
+    color: #000;
+    border-radius: 12px;
+    overflow: hidden;
+    text-decoration: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  .thumb img {
+    width: 100%;
+    display: block;
+  }
+
+  .content {
+    padding: 1rem;
+  }
+
+  .title {
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+  }
+
+  .note {
+    color: #555;
+    font-size: 0.9rem;
+  }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">T</div>
+      <div>
+        <div style="font-weight:700">Booth販売作品</div>
+        <div style="font-size:0.8rem;color:var(--muted)">GisuLove</div>
+      </div>
+    </div>
+
+    <div>
+      <button class="menu-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="メニュー" id="menuToggle">☰</button>
+      <nav id="main-nav">
+        <!-- 内部ページへ飛ぶボタン（アンカー）。実際のサイトでは about.html, contact.html 等のファイルを作ります。 -->
+        <a class="nav-button" href="index.html">ホーム</a>
+        <a class="nav-button" href="Make.html">作品</a>
+         <a class="nav-button" href="Booth.html">Booth</a>
+        <a class="nav-button" href="services.html">スキル</a>
+        <a class="nav-button" href="contact.html">コンタクト</a>
+        
+        
+      </nav>
+    </div>
+  </header>
+<main>
+  <h1> Booth 商品ギャラリー</h1>
+
+  <div class="gallery">
+    <!-- 商品カード1 -->
+    <a href="https://gisulove.booth.pm/items/4288843" class="product-card" target="_blank">
+      <div class="thumb">
+        <img src="https://booth.pximg.net/1081281c-2faa-4975-ab9f-6f93b4389fbf/i/4288843/76a94d53-0c77-4731-9475-6290eb4de5ba_base_resized.jpg" altウマ娘　トレセン学園外観線画3Dモデル">
+      </div>
+      <div class="content">
+        <div class="title">ウマ娘　トレセン学園外観線画3Dモデル</div>
+        <div class="note">
+          トレセン学園の本校舎部分のみの３Dモデルになります。<br>
+          建築系3DCGの勉強用に作成したものです。
+        </div>
+      </div>
+    </a>
+
+    <!-- 商品カード2 -->
+    <a href="https://gisulove.booth.pm/items/6801917" class="product-card" target="_blank">
+      <div class="thumb">
+        <img src="https://booth.pximg.net/1081281c-2faa-4975-ab9f-6f93b4389fbf/i/6801917/071fe82c-0354-41fb-b0af-2a8cb98b0904_base_resized.jpg" alt="江戸の古銭11種">
+      </div>
+      <div class="content">
+        <div class="title">江戸の古銭11種</div>
+        <div class="note">江戸時代の古銭11種の詰め合わせパックになります。</div>
+      </div>
+    </a>
+
+    <!-- 商品カード3 -->
+    <a href="https://gisulove.booth.pm/items/4207891" class="product-card" target="_blank">
+      <div class="thumb">
+        <img src="https://booth.pximg.net/1081281c-2faa-4975-ab9f-6f93b4389fbf/i/4207891/d68f277b-0973-41ba-bc2b-289543347720_base_resized.jpg" alt="宝石　カット３０種+マテリアル３０種">
+      </div>
+      <div class="content">
+        <div class="title">宝石　カット３０種+マテリアル３０種</div>
+        <div class="note">宝石のカット3Dモデル30種+マテリアル30種の詰め合わせになります。</div>
+      </div>
+    </a>
+    
+        <!-- 商品カード -->
+    <a href="https://gisulove.booth.pm/items/5916817" class="product-card" target="_blank">
+      <div class="thumb">
+        <img src="https://booth.pximg.net/1081281c-2faa-4975-ab9f-6f93b4389fbf/i/5916817/3725b71e-cb2e-46fb-8aa8-01de1d26c042_base_resized.jpg" alt="アングルポイズ　アームライト　ボーンあり">
+      </div>
+      <div class="content">
+        <div class="title">アングルポイズ　アームライト　ボーンあり</div>
+        <div class="note">https://x.com/Gisu_Love/status/1812087792241102928
+これに使用したアングルポイズ（デスクライト的なもの）の3Dモデルです。<br>
+リギング用にボーンが入っています。<br>
+</div>
+      </div>
+    </a>
+  </div>
+</main>
+
+  <footer>
+    ©月ヶ瀬理緒
+  </footer>
+
+</body>
+</html>
