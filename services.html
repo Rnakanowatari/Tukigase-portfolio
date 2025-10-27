@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <title>動画ギャラリー | MySite</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    /* ここに共通のヘッダーCSSをそのまま貼ってもOK */
+    /* 必要なら style.css に分けてもいいです */
+
+    :root { --bg:#0f1724;--accent:#06b6d4;--muted:#94a3b8 }
+    body { margin:0; font-family:system-ui,sans-serif; color:#e6eef6; background:#081226; }
+    header { display:flex; justify-content:space-between; align-items:center; padding:0.75rem 1rem; background:rgba(255,255,255,0.05); }
+    .nav-button { color:inherit; text-decoration:none; padding:0.5rem 0.8rem; border-radius:8px; }
+    .nav-button:hover { background:rgba(255,255,255,0.1); }
+    main { padding:2rem; max-width:960px; margin:auto; }
+
+    /* YouTubeカード用のスタイル */
+    .gallery { display:grid; gap:2rem; grid-template-columns: 1fr; }
+    .video-card { background:#fff; color:#000; border-radius:10px; overflow:hidden; }
+    .video-wrapper { position:relative; padding-top:56.25%; background:#000; }
+    iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
+    .content { padding:1rem; }
+    .title { font-weight:bold; margin-bottom:0.3rem; }
+    .note { color:#555; font-size:0.9rem; }
+<style>
+    /* シンプルでモダンなヘッダー + ナビボタン */
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#06b6d4;--muted:#94a3b8}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;color:#e6eef6;background:linear-gradient(180deg,#071024 0%, #081226 100%);}
+
+    header{display:flex;align-items:center;justify-content:space-between;padding:0.75rem 1rem;background:rgba(255,255,255,0.03);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.03)}
+    .brand{display:flex;align-items:center;gap:0.6rem}
+    .logo{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:inline-grid;place-items:center;color:#04263a;font-weight:700}
+    nav{display:flex;gap:0.5rem;align-items:center}
+
+    /* ナブリンクをボタン風に見せる */
+    .nav-button{appearance:none;border:0;padding:0.5rem 0.9rem;border-radius:10px;background:transparent;color:inherit;text-decoration:none;font-weight:600;cursor:pointer;transition:all .18s;display:inline-flex;align-items:center;gap:0.5rem}
+    .nav-button:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(6,182,212,0.06)}
+    .nav-button.primary{background:linear-gradient(90deg,var(--accent),#7c3aed);color:#032027}
+
+    /* モバイル用: ハンバーガー */
+    .menu-toggle{display:none;border:0;background:none;color:inherit;font-size:1.2rem}
+    @media (max-width:700px){
+      nav{position:fixed;right:0;top:64px;background:var(--card);padding:0.75rem;border-radius:12px;box-shadow:0 12px 30px rgba(2,6,23,0.6);flex-direction:column;gap:0.4rem;transform:translateY(-10px);display:none}
+      nav.open{display:flex}
+      .menu-toggle{display:inline-flex}
+    }
+
+    main{padding:2rem;max-width:980px;margin:1.5rem auto;background:rgba(255,255,255,0.02);border-radius:12px}
+    h1{margin-top:0}
+    .card{padding:1rem;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);border:1px solid rgba(255,255,255,0.02)}
+
+    footer{max-width:980px;margin:1rem auto;color:var(--muted);font-size:0.9rem;padding:0 1rem}
+
+    /* アクセシビリティ: focus */
+    .nav-button:focus{outline:3px solid rgba(6,182,212,0.18);outline-offset:3px}
+    
+    /* === スキルツリー === */
+  .tree {
+    list-style: none;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+
+  .tree li {
+    position: relative;
+    margin: 0.6rem 0;
+    padding-left: 1.5rem;
+  }
+
+  /* 枝線 */
+  .tree li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.9rem;
+    width: 1rem;
+    height: 1px;
+    background: #64748b;
+  }
+
+  /* ノード */
+  .node {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: #fff;
+    font-weight: 500;
+  }
+
+  /* === リンクボタン部分 === */
+  .link-item {
+    margin-top: 0.4rem;
+  }
+
+  .link-button {
+    display: inline-block;
+    background: #f97316; /* オレンジ */
+    color: #fff;
+    padding: 0.5rem 0.9rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s, transform 0.1s;
+  }
+
+  .link-button:hover {
+    background: #ea580c;
+    transform: translateY(-2px);
+  }
+
+  footer {
+    text-align: center;
+    padding: 2rem;
+    color: #94a3b8;
+    font-size: 0.9rem;
+  }
+
+    
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">T</div>
+      <div>
+        <div style="font-weight:700">スキル</div>
+      </div>
+    </div>
+
+    <div>
+      <button class="menu-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="メニュー" id="menuToggle">☰</button>
+      <nav id="main-nav">
+        <!-- 内部ページへ飛ぶボタン（アンカー）。実際のサイトでは about.html, contact.html 等のファイルを作ります。 -->
+        <a class="nav-button" href="index.html">ホーム</a>
+        <a class="nav-button" href="Make.html">作品</a>
+         <a class="nav-button" href="Booth.html">Booth</a>
+        <a class="nav-button" href="services.html">スキル</a>
+        <a class="nav-button" href="contact.html">コンタクト</a>
+        
+        
+      </nav>
+    </div>
+  </header>
+
+    <main>
+    <h1>スキルツリー</h1>
+
+    
+      <li>
+        <div class="node">Unreal Engine</div>
+        <ul class="tree">
+          <li>
+            <div class="node">BluePrint</div>
+            <ul class="tree">
+              <li>
+        
+                 <li class="link-item">
+                    <a href="https://www.docswell.com/s/tukigaselio/5DN93L-2025-01-20-013003" class="link-button" target="_blank">今から始めるネットワークマルチプレイ</a>
+                  </li>
+                  <li class="link-item">
+                    <a href="https://qiita.com/tukigaselio/items/846a6730798c08ba4609" class="link-button" target="_blank">[UE5]Livedoorの天気APIから天気を取得してみた備忘録</a>
+                  </li>
+                  <li class="link-item">
+                    <a href="https://qiita.com/tukigaselio/items/91ae02e98d5b439644ac" class="link-button" target="_blank">今から始めるLevelVariant</a>
+                  </li>
+                  
+               
+                
+                </ul>
+              </li>
+            </ul>
+          
+        <ul class="tree">
+          <li>
+            <div class="node">C++</div>
+            <ul class="tree">
+              <li>
+        
+                 <li class="link-item">
+                    <a href="https://qiita.com/tukigaselio/items/7641ac38aabb9996963d" class="link-button" target="_blank">今更触るSubSystem（ｃ＋＋初心者向け）</a>
+                  </li>
+                         
+                </ul>
+              </li>
+            </ul>
+
+         
+         <ul class="tree">
+          <li>
+            <div class="node">ControlRig</div>
+            <ul class="tree">
+              <li>
+        
+                 <li class="link-item">
+                    <a href="https://qiita.com/tukigaselio/items/89b1c6571c9d6392198d" class="link-button" target="_blank">UEでMorph（頂点アニメーション）を使おう with Blender</a>
+                  </li>
+                  <li class="link-item">
+                    <a href="https://qiita.com/tukigaselio/items/526213647b7e674f347d" class="link-button" target="_blank">IKRetargeterでリターゲットをするコツ</a>
+                  </li>
+                  <li class="link-item">
+                    <a href="https://qiita.com/tukigaselio/items/83c74ed52b75ba649aa5" class="link-button" target="_blank">【Control Rig】SplineRigで触手うごかしてみた</a>
+                  </li>
+                  <li class="link-item">
+                    <a href="https://qiita.com/tukigaselio/items/a64d31ad81034f356476" class="link-button" target="_blank">自作人型コンロールリグを作ろう</a>
+                  </li>
+                  <li class="link-item">
+                    <a href="https://qiita.com/tukigaselio/items/92d4dfbebadbb47aeb57" class="link-button" target="_blank">【UEでVtuberになろう　～VRM4UとVMCを使用したモーションキャプチャーを使って～</a>
+                  </li>
+                   <li class="link-item">
+                    <a href="https://qiita.com/tukigaselio/items/a6e431f415b4f48b3469" class="link-button" target="_blank">キャタピラをコントロールリグでアニメーションする</a>
+                  </li>
+                  <li class="link-item">
+                    <a href="https://qiita.com/tukigaselio/items/9c6237d3383d737b07cf" class="link-button" target="_blank">多関節的な奴をリギングした</a>
+                  </li>
+                  <li class="link-item">
+                    <a href="https://qiita.com/tukigaselio/items/5091ee7d9316b696f7d8" class="link-button" target="_blank">【UE5.4】爆速で作る四足歩行Rig（猫）</a>
+                  </li>
+                   <li class="link-item">
+                    <a href="https://www.docswell.com/s/tukigaselio/KR2W1J-Mukibutu_Rigging_no_Susume" class="link-button" target="_blank">無機物リギングのススメ</a>
+                  </li>
+                  
+                  
+                </ul>
+              </li>
+            </ul>
+         <ul class="tree">
+      </li>
+          <li>
+            <div class="node">VR</div>
+            <ul class="tree">
+              <li>
+              <li class="link-item">
+                    <a href="https://qiita.com/tukigaselio/items/bb71d4f2d3e0358df7a4" class="link-button" target="_blank">UEでいろんなハンドトラッキングをしようとした備忘録</a>
+                  </li>
+               <li class="link-item">
+                    <a href="https://dipross.co.jp/eng/2025/08/20250825ue5-6.html" class="link-button" target="_blank">【UE5.6】簡単になったパススルー機能を使ってみよう</a>
+                  </li>
+               <li>
+                <div class="node">MetaQuest</div>
+                <ul class="tree">
+                  <li class="link-item">
+                    <a href="https://qiita.com/tukigaselio/items/83257561dec87659b7b0" class="link-button" target="_blank">【UE5.3】MetaQuest2向けにAndroidでPackage化したい</a>
+                  </li>
+                  <li class="link-item">
+                    <a href="https://qiita.com/tukigaselio/items/29faac17fdad3de9d926" class="link-button" target="_blank">VIVE Ultimate TrackerをUEで使えるようにするまで</a>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <div class="node">VIVE</div>
+                <ul class="tree">
+                  <li class="link-item">
+                    <a href="https://dipross.co.jp/eng/2025/04/%e3%80%90ue5%e3%80%91vive-focus-vision%e3%81%ab%e3%83%91%e3%82%b9%e3%82%b9%e3%83%ab%e3%83%bc%e3%82%92%e8%bf%bd%e5%8a%a0%e3%81%99%e3%82%8b.html" class="link-button" target="_blank">【UE5】VIVE Focus Visionにパススルーを追加する</a>
+                  </li>
+                  <li class="link-item">
+                    <a href="https://qiita.com/tukigaselio/items/29faac17fdad3de9d926" class="link-button" target="_blank">VIVE Ultimate TrackerをUEで使えるようにするまで</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            
+          </li>
+        </ul>
+      </li>
+      <ul class="tree">
+          <li>
+            <div class="node">バーチャルプロダクション</div>
+            <ul class="tree">
+              <li>
+        
+                 <li class="link-item">
+                    <a href="https://www.docswell.com/s/tukigaselio/KDNJ3R-nDisplay_Now" class="link-button" target="_blank">今から始めるnDisplay</a>
+                  </li>
+                  <li class="link-item">
+                    <a href="https://www.docswell.com/s/tukigaselio/5PGJPE-EncouragementOfUE3DBillBoard" class="link-button" target="_blank">リアルタイム３D錯視のすすめ</a>
+                  </li>
+                         
+                </ul>
+              </li>
+            </ul>
+      <ul class="tree">
+          <li>
+            <div class="node">その他</div>
+            <ul class="tree">
+              <li>
+        
+                 <li class="link-item">
+                    <a href="https://qiita.com/tukigaselio/items/fc1010385eab4e1cd9ab" class="link-button" target="_blank">UEでランタイムにメッシュ変形がしたいぼくの365日間戦争</a>
+                  </li>
+                  <li class="link-item">
+                    <a href="https://qiita.com/tukigaselio/items/3b5fe148d7f1bfb46e67" class="link-button" target="_blank">EUWでStaticMeshのデフォルトマテリアルをまとめて変えたい覚書</a>
+                  </li>
+                  <li class="link-item">
+                    <a href="https://www.docswell.com/s/tukigaselio/5EXQXN-TravelUE" class="link-button" target="_blank">旅するUnreal Engine With Plateau/ArcGIS/Cesium/PointCloud</a>
+                  </li>
+                  <li class="link-item">
+                    <a href="https://qiita.com/tukigaselio/items/d2f31c28aea0b94a77e7" class="link-button" target="_blank">ArcGIS Maps SDK for UnrealEngineとPLATEAUで遊ぼう</a>
+                  </li>
+                         
+                </ul>
+              </li>
+            </ul>
+
+    </ul>
+  </main>
+  <footer>
+    ©月ヶ瀬理緒
+  </footer>
