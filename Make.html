@@ -78,60 +78,63 @@
     </div>
   </header>
 
-  <!-- メインコンテンツ -->
   <main>
     <h1>作品ギャラリー</h1>
     <div class="gallery">
-      <!-- YouTube埋め込み部分 -->
       <div class="video-card">
         <div class="video-wrapper">
           <iframe src="https://www.youtube.com/embed/XR3a9V1LJLU?si=8hJJu5UbGx5kLkcL" allowfullscreen></iframe>
         </div>
         <div class="content">
           <div class="title">【第5回ぷちコン映像編応募作品】肖像の脱走</div>
-          <div class="note">  第5回ぷちコン映像編にてアート賞を頂きました。<br>
-  ・キャラクターモデル　Vroid<br>
-  ・アニメーション　Cascadeur<br>
-  ・3Dアニメーション/レンダリング　Unreal Engine<br>
-  ・動画編集　After Effectsa</div>
-  2024/01/09
+          <div class="note">
+            第5回ぷちコン映像編にてアート賞を頂きました。<br>
+            ・キャラクターモデル　Vroid<br>
+            ・アニメーション　Cascadeur<br>
+            ・3Dアニメーション/レンダリング　Unreal Engine<br>
+            ・動画編集　After Effects
+          </div>
+          2024/01/09
         </div>
       </div>
+
       <div class="video-card">
         <div class="video-wrapper">
           <iframe src="https://www.youtube.com/embed/4ARYqfIg5L4?si=VrIfHQx3YU5PGsG2" allowfullscreen></iframe>
         </div>
         <div class="content">
           <div class="title">【第24回UE5ぷちコン応募作品】ガラクタフォーミュラー</div>
-          <div class="note">・ゲームエンジン　Unreal Engine<br>
-          ・言語　BluePrint　Only<br>
-          ・アニメーション　Unrea Engine ControlRig<br>
-          ・車体モデル　Blender<br>
-          ・UI Illustrator Photoshop<br>
-          ・動画編集　After Effectsa</div>
+          <div class="note">
+            ・ゲームエンジン　Unreal Engine<br>
+            ・言語　BluePrint　Only<br>
+            ・アニメーション　Unreal Engine ControlRig<br>
+            ・車体モデル　Blender<br>
+            ・UI Illustrator Photoshop<br>
+            ・動画編集　After Effects
+          </div>
           2025/09/01
- 
         </div>
       </div>
-      </div>
+
       <div class="video-card">
         <div class="video-wrapper">
           <iframe src="https://www.youtube.com/embed/qKyFzBsidPE?si=9tPoBCU5vYKHBHUX" allowfullscreen></iframe>
         </div>
         <div class="content">
           <div class="title">【第23回UE5ぷちコン応募作品】古銭ころころ</div>
-          <div class="note">・ゲームエンジン　Unreal Engine<br>
-          ・キャラクターモデル　MetaHuman<br>
-          ・キャラクター衣装　MarvelousDesigner<br>
-          ・言語　BluePrint　Only<br>
-          ・古銭モデル　Blender<br>
-          ・UI Illustrator Photoshop<br>
-          ・動画編集　After Effectsa</div>
+          <div class="note">
+            ・ゲームエンジン　Unreal Engine<br>
+            ・キャラクターモデル　MetaHuman<br>
+            ・キャラクター衣装　MarvelousDesigner<br>
+            ・言語　BluePrint　Only<br>
+            ・古銭モデル　Blender<br>
+            ・UI Illustrator Photoshop<br>
+            ・動画編集　After Effects
+          </div>
           2025/04/07
- 
         </div>
       </div>
-</div>
+
       <div class="video-card">
         <div class="video-wrapper">
           <iframe src="https://www.youtube.com/embed/5BK1gS3g8RA?si=fXc6UsbQaE5GyOTJ" allowfullscreen></iframe>
@@ -139,22 +142,34 @@
         <div class="content">
           <div class="title">【第6回ぷちコン映像編応募作品】dazzling</div>
           <div class="note">
-          ・3Dアニメーション/レンダリング　Unreal Engine<br>
-          ・キャラクターモデル　MetaHuman<br>
-          ・キャラクター衣装　MarvelousDesigner<br>
-          ・UI Illustrator Photoshop<br>
-          ・動画編集　After Effectsa</div>
+            ・3Dアニメーション/レンダリング　Unreal Engine<br>
+            ・キャラクターモデル　MetaHuman<br>
+            ・キャラクター衣装　MarvelousDesigner<br>
+            ・UI Illustrator Photoshop<br>
+            ・動画編集　After Effects
+          </div>
           2025/09/01
- 
         </div>
-      </div>    </div>
+      </div>
+    </div>
   </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const toggle = document.querySelector(".menu-toggle");
+      const nav = document.querySelector("nav");
+
+      toggle.addEventListener("click", () => {
+        nav.classList.toggle("open");
+        const expanded = nav.classList.contains("open");
+        toggle.setAttribute("aria-expanded", expanded);
+      });
+    });
+  </script>
+
   <footer>
     ©月ヶ瀬理緒
   </footer>
-
 </body>
 </html>
-
-
 
