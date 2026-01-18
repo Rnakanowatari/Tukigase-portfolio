@@ -5,26 +5,6 @@
   <title>動画ギャラリー | 月ヶ瀬理緒　ポートフォリオ</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <style>
-    /* ここに共通のヘッダーCSSをそのまま貼ってもOK */
-    /* 必要なら style.css に分けてもいいです */
-
-    :root { --bg:#0f1724;--accent:#06b6d4;--muted:#94a3b8 }
-    body { margin:0; font-family:system-ui,sans-serif; color:#e6eef6; background:#081226; }
-    header { display:flex; justify-content:space-between; align-items:center; padding:0.75rem 1rem; background:rgba(255,255,255,0.05); }
-    .nav-button { color:inherit; text-decoration:none; padding:0.5rem 0.8rem; border-radius:8px; }
-    .nav-button:hover { background:rgba(255,255,255,0.1); }
-    main { padding:2rem; max-width:960px; margin:auto; }
-
-    /* YouTubeカード用のスタイル */
-    .gallery { display:grid; gap:2rem; grid-template-columns: 1fr; }
-    .video-card { background:#fff; color:#000; border-radius:10px; overflow:hidden; }
-    .video-wrapper { position:relative; padding-top:56.25%; background:#000; }
-    iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
-    .content { padding:1rem; }
-    .title { font-weight:bold; margin-bottom:0.3rem; }
-    .note { color:#555; font-size:0.9rem; }
-<style>
-    /* シンプルでモダンなヘッダー + ナビボタン */
     :root{--bg:#0f1724;--card:#0b1220;--accent:#06b6d4;--muted:#94a3b8}
     *{box-sizing:border-box}
     body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;color:#e6eef6;background:linear-gradient(180deg,#071024 0%, #081226 100%);}
@@ -34,30 +14,69 @@
     .logo{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:inline-grid;place-items:center;color:#04263a;font-weight:700}
     nav{display:flex;gap:0.5rem;align-items:center}
 
-    /* ナブリンクをボタン風に見せる */
     .nav-button{appearance:none;border:0;padding:0.5rem 0.9rem;border-radius:10px;background:transparent;color:inherit;text-decoration:none;font-weight:600;cursor:pointer;transition:all .18s;display:inline-flex;align-items:center;gap:0.5rem}
     .nav-button:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(6,182,212,0.06)}
     .nav-button.primary{background:linear-gradient(90deg,var(--accent),#7c3aed);color:#032027}
 
-    /* モバイル用: ハンバーガー */
-    .menu-toggle{display:none;border:0;background:none;color:inherit;font-size:1.2rem}
+    .menu-toggle{display:none;border:0;background:none;color:inherit;font-size:1.2rem;cursor:pointer}
     @media (max-width:700px){
-      nav{position:fixed;right:0;top:64px;background:var(--card);padding:0.75rem;border-radius:12px;box-shadow:0 12px 30px rgba(2,6,23,0.6);flex-direction:column;gap:0.4rem;transform:translateY(-10px);display:none}
+      nav{
+        position:fixed;
+        right:1rem;
+        top:64px;
+        background:#0b1220;
+        padding:0.75rem;
+        border-radius:12px;
+        box-shadow:0 12px 30px rgba(2,6,23,0.9);
+        flex-direction:column;
+        gap:0.4rem;
+        transform:translateY(-10px);
+        display:none;
+        z-index:100;
+        backdrop-filter:blur(12px);
+        border:1px solid rgba(255,255,255,0.1);
+      }
       nav.open{display:flex}
       .menu-toggle{display:inline-flex}
     }
 
     main{padding:2rem;max-width:980px;margin:1.5rem auto;background:rgba(255,255,255,0.02);border-radius:12px}
     h1{margin-top:0}
-    .card{padding:1rem;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);border:1px solid rgba(255,255,255,0.02)}
 
-    footer{max-width:980px;margin:1rem auto;color:var(--muted);font-size:0.9rem;padding:0 1rem}
-
-    /* アクセシビリティ: focus */
     .nav-button:focus{outline:3px solid rgba(6,182,212,0.18);outline-offset:3px}
-    
+
+    .gallery { display:grid; gap:2rem; grid-template-columns: 1fr; }
+    .video-card { background:#fff; color:#000; border-radius:10px; overflow:hidden; }
+    .video-wrapper { position:relative; padding-top:56.25%; background:#000; }
+    iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
+    .content { padding:1rem; }
+    .title { font-weight:bold; margin-bottom:0.3rem; }
+    .note { color:#555; font-size:0.9rem; margin-bottom:0.5rem; }
+
+    footer{max-width:980px;margin:1rem auto;color:var(--muted);font-size:0.9rem;padding:0 1rem;text-align:center}
   </style>
 </head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">T</div>
+      <div>
+        <div style="font-weight:700">自主制作作品</div>
+        <div style="font-size:0.8rem;color:var(--muted)">月ヶ瀬工房</div>
+      </div>
+    </div>
+
+    <div>
+      <button class="menu-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="メニュー" id="menuToggle">☰</button>
+      <nav id="main-nav">
+        <a class="nav-button" href="index.html">ホーム</a>
+        <a class="nav-button" href="Make.html">作品</a>
+        <a class="nav-button" href="Booth.html">Booth</a>
+        <a class="nav-button" href="services.html">スキル</a>
+        <a class="nav-button" href="contact.html">コンタクト</a>
+      </nav>
+    </div>
+  </header>
 <body>
   <header>
     <div class="brand">
@@ -160,4 +179,5 @@
 
 </body>
 </html>
+
 
