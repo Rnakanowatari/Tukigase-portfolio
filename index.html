@@ -108,30 +108,31 @@
 </head>
 
 <body>
-  <!-- ==== 共通ヘッダー ==== -->
   <header>
     <div class="brand">
       <div class="logo">T</div>
       <div>月ヶ瀬理緒　ポートフォリオ</div>
     </div>
-    <nav>
-      <a class="nav-button" href="index.html">ホーム</a>
+    <div>
+      <button class="menu-toggle" aria-controls="main-nav" aria-expanded="false" aria-label="メニュー" id="menuToggle">☰</button>
+      <nav id="main-nav">
+        <a class="nav-button" href="index.html">ホーム</a>
         <a class="nav-button" href="Make.html">作品</a>
-         <a class="nav-button" href="Booth.html">Booth</a>
+        <a class="nav-button" href="Booth.html">Booth</a>
         <a class="nav-button" href="services.html">スキル</a>
         <a class="nav-button" href="contact.html">コンタクト</a>
-        
-    </nav>
+      </nav>
+    </div>
   </header>
 
-  <!-- ==== メイン部分 ==== -->
-    <main>
+  <main>
     <div class="left"></div>
     <div class="right">
-      <div class="name">月ヶ瀬 理緒</div>
-      <div class="title">Portfolio</div>
+      <div>
+        <div class="name">月ヶ瀬 理緒</div>
+        <div class="title">Portfolio</div>
+      </div>
 
-      <!-- 🔽 SNSボタン追加部分 -->
       <div class="social-links">
         <a href="https://x.com/Gisu_Love" target="_blank" class="social-button">Twitter</a>
         <a href="https://qiita.com/tukigaselio" target="_blank" class="social-button">Qiita</a>
@@ -139,5 +140,18 @@
       </div>
     </div>
   </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const toggle = document.querySelector(".menu-toggle");
+      const nav = document.querySelector("nav");
+
+      toggle.addEventListener("click", () => {
+        nav.classList.toggle("open");
+        const expanded = nav.classList.contains("open");
+        toggle.setAttribute("aria-expanded", expanded);
+      });
+    });
+  </script>
 </body>
 </html>
